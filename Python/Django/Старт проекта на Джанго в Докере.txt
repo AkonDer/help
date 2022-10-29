@@ -1,0 +1,29 @@
+- утанавливаем виртуальное окружение в папку с названием "venv"
+	py -m venv venv
+
+- запускаем виртуальное окружение
+	.\venv\Scripts\activate
+
+- устанавливаем Django
+	pip install django
+
+- просмотр того, что установлено 
+	pip freeze
+
+- создаем проект Django (точка в конце означает что не надо создавать еще одну вложенную папку core)
+	django-admin startproject core .
+
+- создаем новое приложение core_app
+	django-admin startapp core_app
+
+- запускаем сервер
+	py manage.py runserver
+
+- помещаем названия необходимых для работы Docker пакеты в файл requirements.txt
+	pip freeze > requirements.txt
+
+- создаем образ Docker (вместо --tag можно использовать -t)
+	docker build --tag python-django .
+
+- запускаем контейнер из образа python-django (вместо --publish можно использовать -p)
+	docker run --publish 8000:8000 python-django
